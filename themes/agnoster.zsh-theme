@@ -26,11 +26,7 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' formats '(%s) ⭠ %b'
-zstyle ':vcs_info:*' enable git svn hg
 setopt prompt_subst
-precmd(){vcs_info}
 
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR='⮀'
@@ -77,14 +73,13 @@ prompt_context() {
 # Git: branch/detached head, dirty status
 prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    ZSH_THEME_GIT_PROMPT_DIRTY='±'
     dirty=$(parse_git_dirty)
     if [[ -n $dirty ]]; then
       prompt_segment yellow black
     else
       prompt_segment green black
     fi
-    echo -n "${vcs_info_msg_0_}$dirty "
+    echo -n "${vcs_info_msg_0_} "
   fi
 }
 
@@ -106,6 +101,14 @@ prompt_status() {
 
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
+
+# VCS code
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '±'
+zstyle ':vcs_info:*' stagedstr '±'
+zstyle ':vcs_info:*' formats '(%s) ⭠ %b%u%c'
+zstyle ':vcs_info:*' enable git svn hg
+precmd(){vcs_info}
 
 ## Main prompt
 build_prompt() {
