@@ -105,8 +105,8 @@ COMMIT_HASH_SYMBOL='➦'
 
 # VCS code
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '%{%F{red}%}✹'
-zstyle ':vcs_info:*' stagedstr '%{%F{green}%}✚'
+zstyle ':vcs_info:*' unstagedstr '✹'
+zstyle ':vcs_info:*' stagedstr '✚'
 zstyle ':vcs_info:*' formats '(%s) ⭠ %b%u%c'
 zstyle ':vcs_info:*' enable git svn hg
 precmd(){vcs_info}
