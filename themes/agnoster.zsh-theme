@@ -71,10 +71,9 @@ prompt_context() {
 }
 
 # Git: branch/detached head, dirty status
-prompt_git() {
-  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
-    dirty=$(parse_git_dirty)
-    if [[ -n $dirty ]]; then
+prompt_vcs() {
+  if [[ -n "${vcs_info_msg_0_}" ]]; then
+    if [[ -n $(echo "${vcs_info_msg_0_}" | awk '/±$/{print "end!"}') ]]; then
       prompt_segment yellow black
     else
       prompt_segment green black
@@ -116,7 +115,7 @@ build_prompt() {
   prompt_status
   prompt_context
   prompt_dir
-  prompt_git
+  prompt_vcs
   prompt_end
 }
 
