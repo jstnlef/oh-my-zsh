@@ -70,10 +70,10 @@ prompt_context() {
   fi
 }
 
-# Git: branch/detached head, dirty status
+# VCS: branch/detached head, dirty status
 prompt_vcs() {
   if [[ -n "${vcs_info_msg_0_}" ]]; then
-    if [[ -n $(echo "${vcs_info_msg_0_}" | awk '/±$/{print "end!"}') ]]; then
+    if [[ -n $(echo "${vcs_info_msg_0_}" | awk '/[✹|✚]$/{print "end!"}') ]]; then
       prompt_segment yellow black
     else
       prompt_segment green black
@@ -101,11 +101,13 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+COMMIT_HASH_SYMBOL='➦'
+
 # VCS code
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr '±'
-zstyle ':vcs_info:*' stagedstr '±'
-zstyle ':vcs_info:*' formats '(%s) ⭠ %b%u%c'
+zstyle ':vcs_info:*' unstagedstr '%{%F{red}%}✹'
+zstyle ':vcs_info:*' stagedstr '%{%F{green}%}✚'
+zstyle ':vcs_info:*' formats '(%s) ⭠ %b %u%c'
 zstyle ':vcs_info:*' enable git svn hg
 precmd(){vcs_info}
 
