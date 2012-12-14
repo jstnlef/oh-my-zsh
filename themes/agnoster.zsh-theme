@@ -101,14 +101,16 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
-COMMIT_HASH_SYMBOL='➦'
-
 # VCS code
+zstyle ':vcs_info:*' enable git svn hg
+zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '✹'
 zstyle ':vcs_info:*' stagedstr '✚'
-zstyle ':vcs_info:*' formats '(%s) ⭠ %b%u%c'
-zstyle ':vcs_info:*' enable git svn hg
+zstyle ':vcs_info:*' formats '(%s) ⭠ %b%c%u' '➦ %7.7i'
+zstyle ':vcs_info:*' actionformats '(%s) ⭠ %b|%{%F{red}%}%a%c%u'
+zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
+zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 precmd(){vcs_info}
 
 ## Main prompt
