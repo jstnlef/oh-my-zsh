@@ -25,9 +25,6 @@
 ### Segment drawing
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
-autoload -Uz vcs_info
-setopt prompt_subst
-
 CURRENT_BG='NONE'
 SEGMENT_SEPARATOR='⮀'
 
@@ -78,7 +75,7 @@ prompt_vcs() {
     else
       prompt_segment green black
     fi
-    echo -n "${vcs_info_msg_0_} "
+    echo -n "${vcs_info_msg_0_}"
   fi
 }
 
@@ -111,6 +108,7 @@ zstyle ':vcs_info:*' formats '(%s) ⭠ %b%c%u' '➦ %7.7i'
 zstyle ':vcs_info:*' actionformats '(%s) ⭠ %b|%{%F{red}%}%a%c%u'
 zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
 zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
+autoload -Uz vcs_info
 precmd(){vcs_info}
 
 ## Main prompt
