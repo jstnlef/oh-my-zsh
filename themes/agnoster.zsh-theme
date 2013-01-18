@@ -79,6 +79,25 @@ prompt_vcs() {
   fi
 }
 
+prompt_hg() {
+	local rev status
+	if $(hg id >/dev/null 2>&1); then
+		if $(hg prompt >/dev/null 2>&1); then
+			rev=$(hg prompt {status})
+			if [[ $rev = "?" ]]; then
+				prompt_segment red white
+				rev='±'
+			elif [[ -n $rev ]]; then
+				prompt_segment yellow black
+				rev='±'
+			else
+				prompt_segment green black
+			fi
+		fi
+		echo -n $(hg prompt "⭠ {rev}@{branch}") $rev
+	fi
+}
+
 # Dir: current working directory
 prompt_dir() {
   prompt_segment blue black '%~'
