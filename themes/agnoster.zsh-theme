@@ -26,7 +26,7 @@
 # A few utility functions to make it easy and re-usable to draw segmented prompts
 
 CURRENT_BG='NONE'
-SEGMENT_SEPARATOR='⮀'
+SEGMENT_SEPARATOR='\ue0b0'
 
 # Begin a segment
 # Takes two arguments, background and foreground. Both can be omitted,
@@ -95,7 +95,7 @@ prompt_hg() {
 				# if working copy is clean
 				prompt_segment green black
 			fi
-			echo -n $(hg prompt "⭠ {rev}@{branch}") $st
+			echo -n $(hg prompt "\ue0a0 {rev}@{branch}") $st
 		else
 			st=""
 			rev=$(hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
@@ -109,7 +109,7 @@ prompt_hg() {
 			else
 				prompt_segment green black
 			fi
-			echo -n "⭠ $rev@$branch" $st
+			echo -n "\ue0a0 $rev@$branch" $st
 		fi
 	fi
 }
@@ -139,8 +139,8 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '✹'
 zstyle ':vcs_info:*' stagedstr '✚'
-zstyle ':vcs_info:*' formats '(%s) ⭠ %b%c%u' '➦ %7.7i'
-zstyle ':vcs_info:*' actionformats '(%s) ⭠ %b|%{%F{red}%}%a%c%u'
+zstyle ':vcs_info:*' formats '(%s) \ue0a0 %b%c%u' '➦ %7.7i'
+zstyle ':vcs_info:*' actionformats '(%s) \ue0a0 %b|%{%F{red}%}%a%c%u'
 zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
 zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 autoload -Uz vcs_info
