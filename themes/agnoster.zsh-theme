@@ -75,9 +75,9 @@ prompt_vcs() {
     else
       prompt_segment green black
     fi
-  echo -n "${vcs_info_msg_0_}"
+    echo -n "${vcs_info_msg_0_}"
+  fi
 }
-
 
 # Git: branch/detached head, dirty status
 prompt_git() {
