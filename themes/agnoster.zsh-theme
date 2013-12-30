@@ -174,8 +174,8 @@ zstyle ':vcs_info:*' get-revision true
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '✹'
 zstyle ':vcs_info:*' stagedstr '✚'
-zstyle ':vcs_info:*' formats '(%s) \ue0a0 %b%c%u' '➦ %7.7i'
-zstyle ':vcs_info:*' actionformats '(%s) \ue0a0 %b|%{%F{red}%}%a%c%u'
+zstyle ':vcs_info:*' formats '(%s)  %b%c%u' '➦ %7.7i'
+zstyle ':vcs_info:*' actionformats '(%s)  %b|%{%F{red}%}%a%c%u'
 zstyle ':vcs_info:hg*:*' hgrevformat "%r" # only show local rev.
 zstyle ':vcs_info:hg*:*' branchformat "%b" # only show branch
 autoload -Uz vcs_info
