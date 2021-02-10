@@ -2,7 +2,7 @@
 
 Automatically load your project ENV variables from `.env` file when you `cd` into project root directory.
 
-Storing configuration in the environment is one of the tenets of a [twelve-factor app](http://www.12factor.net). Anything that is likely to change between deployment environments, such as resource handles for databases or credentials for external services, should be extracted from the code into environment variables.
+Storing configuration in the environment is one of the tenets of a [twelve-factor app](https://www.12factor.net). Anything that is likely to change between deployment environments, such as resource handles for databases or credentials for external services, should be extracted from the code into environment variables.
 
 ## Installation
 
@@ -31,6 +31,17 @@ MONGO_URI=mongodb://127.0.0.1:27017
 PORT=3001
 ```
 You can even mix both formats, although it's probably a bad idea.
+
+### ZSH_DOTENV_FILE
+
+You can also modify the name of the file to be loaded with the variable `ZSH_DOTENV_FILE`.
+If the variable isn't set, the plugin will default to use `.env`.
+For example, this will make the plugin look for files named `.dotenv` and load them:
+
+```
+# in ~/.zshrc, before Oh My Zsh is sourced:
+ZSH_DOTENV_FILE=.dotenv
+```
 
 ## Version Control
 
